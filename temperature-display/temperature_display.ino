@@ -34,16 +34,16 @@ void setup()
 	sensors.begin();
 	sensors.requestTemperatures();
 
-	led[0].begin(0x70);
-	led[1].begin(0x71);
+	led[TEMP_LT].begin(DISP_LT);
+	led[TEMP_MT].begin(DISP_MT);
 
 	Serial.begin(9600);
 }
 
 void loop()
 {
-	displayTemp(sensors.getTempCByIndex(0), 0);
-	displayTemp(sensors.getTempCByIndex(1), 1);
+	displayTemp(sensors.getTempCByIndex(TEMP_LT), TEMP_LT);
+	displayTemp(sensors.getTempCByIndex(TEMP_MT), TEMP_MT);
 
 	sensors.requestTemperatures();
 }
