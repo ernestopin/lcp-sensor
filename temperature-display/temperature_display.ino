@@ -4,6 +4,9 @@
 #include <OneWire.h>
 #include <Wire.h>
 
+#define DEG_SYMBOL 0b01100011
+#define CELSIUS 0b00111001
+
 /* Temperature sensors */
 #define TEMP_BUS 2
 #define TEMP_LT 0
@@ -48,7 +51,9 @@ void loop()
 void displayTemp(float read, int temp) {
 	if (temps[temp] != read) {
 		temps[temp] = (read - raw_low[temp]) * (ref_high - ref_low) / (raw_high[temp] - raw_low[temp]) + ref_low;
-		led[temp].print(temps[temp]);
+		led[temp].print(round(temps[temp]) * 100);
+		led[temp].writeDigitRaw(3, DEG_SYMBOL);
+		led[temp].writeDigitRaw(4, CELSIUS);
 		led[temp].writeDisplay();
 	}
 }
