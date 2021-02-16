@@ -8,7 +8,7 @@
 #define CELSIUS 0b00111001
 
 /* Temperature sensors */
-#define TEMP_BUS 2
+#define TEMP_BUS 5
 #define TEMP_LT 0
 #define TEMP_MT 1
 
